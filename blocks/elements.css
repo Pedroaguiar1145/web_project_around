@@ -92,3 +92,13 @@
     justify-content: center;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .elements {
+    grid-template-columns: repeat(1, 282px);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 20px 0px;
+    margin: 0px auto;
+    justify-content: center;
+  }
+}
