@@ -1,14 +1,18 @@
-let page = document.querySelector(".page");
-let popup = page.querySelector(".popup");
-let popupOver = page.querySelector(".popup__overlay");
-let popupButtonOpen = page.querySelector(".profile__edit");
-let popupButtonClose = page.querySelector(".popup__close");
-let saveEdit = page.querySelector(".popup__submit");
-let name = page.querySelector(".profile__name");
-let job = page.querySelector(".profile__job");
-let nameInput = page.querySelector(".popup__name");
-let jobInput = page.querySelector(".popup__job");
-let form = page.querySelector(".popup__form");
+const page = document.querySelector(".page");
+const popup = page.querySelector(".popup");
+const popupOver = page.querySelector(".popup__overlay");
+const popupButtonOpen = page.querySelector(".profile__edit");
+const popupButtonClose = page.querySelectorAll(".popup__close");
+const saveEdit = page.querySelector(".popup__submit");
+const name = page.querySelector(".profile__name");
+const job = page.querySelector(".profile__job");
+const nameInput = page.querySelector(".popup__name");
+const jobInput = page.querySelector(".popup__job");
+const form = page.querySelector(".popup__form");
+const popup2 = page.querySelector(".popup__2");
+const popupAddPlace = page.querySelector(".profile__button")
+
+
 
 function formOpen() {
   popup.classList.add("popup__opened");
@@ -17,8 +21,21 @@ function formOpen() {
   jobInput.value = `${job.textContent}`;
 }
 
+function formOpen2() {
+  popup2.classList.add("popup__opened");
+  popupOver.classList.add("popup__opened");
+  
+}
+
+
+
 function formClose() {
   popup.classList.remove("popup__opened");
+  popupOver.classList.remove("popup__opened");
+}
+
+function formClose2() {
+  popup2.classList.remove("popup__opened");
   popupOver.classList.remove("popup__opened");
 }
 
@@ -30,5 +47,74 @@ function save(evt) {
 }
 
 popupButtonOpen.addEventListener("click", formOpen);
-popupButtonClose.addEventListener("click", formClose);
+popupButtonClose[0].addEventListener("click", formClose);
+
+popupAddPlace.addEventListener("click", formOpen2);
+popupButtonClose[1].addEventListener("click", formClose2);
+
+
+
 form.addEventListener("submit", save);
+
+
+
+ // iniciando 
+
+
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg"
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg"
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg"
+  },
+  {
+    name: "Parque Nacional da Vanoise ",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg"
+  }
+];
+
+
+initialCards.forEach((card) => {
+  const cardTemplate = document.querySelector("#card-template").content;
+  const cardElement = cardTemplate.cloneNode(true);
+  
+  // Preenche os dados do card
+  cardElement.querySelector(".element__title").textContent = card.name;
+  cardElement.querySelector(".element__img").src = card.link;
+  cardElement.querySelector(".element__img").alt = card.name; 
+  
+  
+  document.querySelector(".elements").appendChild(cardElement);
+});
+ 
+
+// Seleciona TODOS os botões de lixeira
+const trashButtons = document.querySelectorAll('.element__trash');
+
+// Para cada botão, adiciona um evento de clique
+trashButtons.forEach((button) => {
+  button.addEventListener('click', (event) => {
+    // Encontra o cartão pai (elemento com classe "element")
+    const card = event.target.closest('.element');
+    
+    // Remove o cartão se existir
+    if (card) {
+      card.remove();
+    }
+  });
+});
