@@ -108,7 +108,7 @@ const trashButtons = document.querySelectorAll('.element__trash');
 
 // Para cada botão, adiciona um evento de clique
 trashButtons.forEach((button) => {
-  button.addEventListener('click', (event) => {
+  button.addEventListener("click", (event) => {
     // Encontra o cartão pai (elemento com classe "element")
     const card = event.target.closest('.element');
     
@@ -118,3 +118,36 @@ trashButtons.forEach((button) => {
     }
   });
 });
+
+
+// Seleciona os elementos do formulário
+const botaoAdicionarCard = page.querySelector(".popup__submit_element");
+const campoNome = page.querySelector(".popup__name_place");
+const campoLink = page.querySelector(".popup__link");
+
+// Adiciona o evento de clique no botão
+botaoAdicionarCard.addEventListener("click", (evento) => {
+  // Previne o comportamento padrão do formulário (se houver)
+  evento.preventDefault();
+  
+  // Seleciona o template do card
+  const templateCard = document.querySelector("#card-template").content;
+  
+  // Clona o template para criar um novo card
+  const novoCard = templateCard.cloneNode(true);
+  
+  // Preenche os dados do card
+  novoCard.querySelector(".element__title").textContent = campoNome.value;
+  novoCard.querySelector(".element__img").src = campoLink.value;
+  novoCard.querySelector(".element__img").alt = `Imagem de ${campoNome.value}`; 
+  
+  // Adiciona o novo card à lista de elementos
+  document.querySelector(".elements").prepend(novoCard);
+  
+  // Limpa os campos  e fechar
+  campoNome.value = "";
+  campoLink.value = "";
+  formClose2()
+
+});
+
