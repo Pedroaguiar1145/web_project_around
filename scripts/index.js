@@ -127,7 +127,6 @@ const campoLink = page.querySelector(".popup__link");
 
 // Adiciona o evento de clique no botão
 botaoAdicionarCard.addEventListener("click", (evento) => {
-  // Previne o comportamento padrão do formulário (se houver)
   evento.preventDefault();
   
   // Seleciona o template do card
@@ -135,11 +134,25 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
   
   // Clona o template para criar um novo card
   const novoCard = templateCard.cloneNode(true);
+  novotrash = document.querySelector("element__trash")
   
   // Preenche os dados do card
   novoCard.querySelector(".element__title").textContent = campoNome.value;
   novoCard.querySelector(".element__img").src = campoLink.value;
-  novoCard.querySelector(".element__img").alt = `Imagem de ${campoNome.value}`; 
+  novoCard.querySelector(".element__img").alt = `Imagem de ${campoNome.value}`;
+  
+  
+  // Adiciona o botão de lixeira DENTRO do novo card
+  novoCard.querySelector(".element__trash").addEventListener("click", (event) => {
+    // Encontra o cartão pai 
+    const card = event.target.closest('.element');
+    
+    // Remove o cartão se existir
+    if (card) {
+      card.remove();
+    }
+  });
+  
   
   // Adiciona o novo card à lista de elementos
   document.querySelector(".elements").prepend(novoCard);
@@ -147,7 +160,9 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
   // Limpa os campos  e fechar
   campoNome.value = "";
   campoLink.value = "";
-  formClose2()
+  formClose2();
+  
+})
 
-});
 
+;
