@@ -71,6 +71,17 @@
   background-image: url(../images/coraçao__cinza.svg);
 }
 
+.element__button_active {
+  background-image: url(../images/coraçao__cinza.svg);
+   width: 21px;
+  height: 19px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+  background-position: center;
+  background-color: #fff;
+}
+
 .block {
   text-overflow: ellipsis;
   white-space: nowrap;

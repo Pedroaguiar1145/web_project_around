@@ -152,6 +152,15 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
       card.remove();
     }
   });
+
+  // adiciona o botao funcional de curtir 
+
+  novoCard.querySelector(".element__button").addEventListener("click", (event) => {
+    // Alterna a classe active no botão clicado
+    event.currentTarget.classList.toggle("element__button_active");
+  }) 
+
+
   
   
   // Adiciona o novo card à lista de elementos
@@ -166,3 +175,16 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
 
 
 ;
+
+// // Adiciona o evento de curti foto 
+
+// Adiciona o evento de curtir foto
+const buttonlike = document.querySelectorAll(".element__button");
+
+buttonlike.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    // Alterna a classe active no botão clicado
+    event.currentTarget.classList.toggle("element__button_active");
+  });
+});
+
