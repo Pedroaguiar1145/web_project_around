@@ -188,3 +188,51 @@ buttonlike.forEach((button) => {
   });
 });
 
+
+
+// funcion popup abrir e fechar 
+
+const popup3 = document.querySelector(".popup__3");
+
+function imgOpen () {
+
+  popup3.classList.add("popup__opened");
+  popupOver.classList.add("popup__opened");
+
+}
+
+function imgClose () {
+   popup3.classList.remove("popup__opened");
+  popupOver.classList.remove("popup__opened");
+}
+ 
+// fechar img 
+popupButtonClose[2].addEventListener("click", imgClose);
+
+
+const imagens = document.querySelectorAll(".element__img");
+const imagemInf = document.getElementById("elementoSrc");
+const popupImg = document.querySelector(".popup__img");
+const popupImgTitle = document.querySelector(".popup__title_img");
+
+
+
+// evento de clique para cada imagem
+
+
+
+imagens.forEach(img => {
+  img.addEventListener("click", function() {
+    // Pega o elemento pai da imagem (card) e então encontra o título
+    const card = this.closest('.element'); // ou a classe do seu card
+    const title = card ? card.querySelector('.element__title').textContent : '';
+    
+    // Atualiza o popup
+    popupImg.src = this.src;
+    popupImg.alt = this.alt || "Imagem ampliada";
+    popupImgTitle.textContent = title; 
+    
+    imgOpen();
+  });
+});
+
