@@ -12,9 +12,13 @@
 
 
 .popup__img {
-  width: min(75vw, 800px);  
-  height: min(75vh, 600px); 
   z-index: 100;
+  max-width: 75vw;     
+  max-height: 75vh;   
+  width: auto;        
+  height: auto;       
+  object-fit: contain; 
+  
 }
 
 

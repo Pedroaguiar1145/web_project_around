@@ -161,7 +161,23 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
   }) 
 
 
-  
+  // Adicion funçao de abertura de foto 
+
+  novoCard.querySelector(".element__img").addEventListener("click", function() {
+    // Pega 
+    const card = this.closest('.element'); // o
+    const title = card ? card.querySelector('.element__title').textContent : '';
+    
+    // Atualiza o popup
+    popupImg.src = this.src;
+    popupImg.alt = this.alt || "Imagem ampliada";
+    popupImgTitle.textContent = title; 
+    
+    imgOpen();
+  });
+
+
+
   
   // Adiciona o novo card à lista de elementos
   document.querySelector(".elements").prepend(novoCard);
@@ -223,8 +239,8 @@ const popupImgTitle = document.querySelector(".popup__title_img");
 
 imagens.forEach(img => {
   img.addEventListener("click", function() {
-    // Pega o elemento pai da imagem (card) e então encontra o título
-    const card = this.closest('.element'); // ou a classe do seu card
+    // Pega 
+    const card = this.closest('.element'); // o
     const title = card ? card.querySelector('.element__title').textContent : '';
     
     // Atualiza o popup
