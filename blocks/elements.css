@@ -8,6 +8,7 @@
   align-content: center;
   justify-content: center;
 }
+
 .element {
   max-width: 282px;
   display: flex;

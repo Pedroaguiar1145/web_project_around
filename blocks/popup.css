@@ -2,11 +2,11 @@
   display: none;
 }
 
-.popup__2 {
+.popup__new_card {
   display: none;
 }
 
-.popup__3 {
+.popup__full_img {
   display: none;
 }
 
@@ -25,11 +25,12 @@
 .popup__container {
   box-sizing: border-box;
   display: flex;
-  position: absolute;
+  position: fixed;
   width: 430px;
   height: 330px;
   top: 195px;
-  left: 425px;
+  left: 50%; /* Centraliza na horizontal */
+  transform: translateX(-50%); 
   opacity: 1;
   border-radius: 10px;
   box-shadow: 0px 0px 25px 0px #00000026;
@@ -40,7 +41,7 @@
 
 
 .popup__container2 {
-  position: absolute;
+  position: fixed;
   box-sizing: border-box;
   top: 90px; /* Fixo a 90px do topo */
   left: 50%; /* Centraliza na horizontal */

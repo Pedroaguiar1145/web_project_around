@@ -1,6 +1,6 @@
 const page = document.querySelector(".page");
 const popup = page.querySelector(".popup");
-const popupOver = page.querySelector(".popup__overlay");
+const popupOver = page.querySelectorAll(".popup__overlay");
 const popupButtonOpen = page.querySelector(".profile__edit");
 const popupButtonClose = page.querySelectorAll(".popup__close");
 const saveEdit = page.querySelector(".popup__submit");
@@ -9,52 +9,52 @@ const job = page.querySelector(".profile__job");
 const nameInput = page.querySelector(".popup__name");
 const jobInput = page.querySelector(".popup__job");
 const form = page.querySelector(".popup__form");
-const popup2 = page.querySelector(".popup__2");
+const popupNewCard = page.querySelector(".popup__new_card");
 const popupAddPlace = page.querySelector(".profile__button")
 
 
 
-function formOpen() {
+function openFormEdit() {
   popup.classList.add("popup__opened");
-  popupOver.classList.add("popup__opened");
+  popupOver[0].classList.add("popup__opened");
   nameInput.value = `${name.textContent}`;
   jobInput.value = `${job.textContent}`;
 }
 
-function formOpen2() {
-  popup2.classList.add("popup__opened");
-  popupOver.classList.add("popup__opened");
+function openFormNewCard() {
+  popupNewCard.classList.add("popup__opened");
+  popupOver[1].classList.add("popup__opened");
   
 }
 
 
 
-function formClose() {
+function closeFormEdit() {
   popup.classList.remove("popup__opened");
-  popupOver.classList.remove("popup__opened");
+  popupOver[0].classList.remove("popup__opened");
 }
 
-function formClose2() {
-  popup2.classList.remove("popup__opened");
-  popupOver.classList.remove("popup__opened");
+function closeFormNewCard() {
+  popupNewCard.classList.remove("popup__opened");
+  popupOver[1].classList.remove("popup__opened");
 }
 
-function save(evt) {
+function saveProfileForm(evt) {
   evt.preventDefault();
   name.textContent = `${nameInput.value}`;
   job.textContent = `${jobInput.value}`;
-  formClose();
+  closeFormEdit();
 }
 
-popupButtonOpen.addEventListener("click", formOpen);
-popupButtonClose[0].addEventListener("click", formClose);
+popupButtonOpen.addEventListener("click", openFormEdit);
+popupButtonClose[0].addEventListener("click", closeFormEdit);
 
-popupAddPlace.addEventListener("click", formOpen2);
-popupButtonClose[1].addEventListener("click", formClose2);
+popupAddPlace.addEventListener("click", openFormNewCard);
+popupButtonClose[1].addEventListener("click", closeFormNewCard);
 
 
 
-form.addEventListener("submit", save);
+form.addEventListener("submit", saveProfileForm);
 
 
 
@@ -133,17 +133,17 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
   const templateCard = document.querySelector("#card-template").content;
   
   // Clona o template para criar um novo card
-  const novoCard = templateCard.cloneNode(true);
+  const newCard = templateCard.cloneNode(true);
   novotrash = document.querySelector("element__trash")
   
   // Preenche os dados do card
-  novoCard.querySelector(".element__title").textContent = campoNome.value;
-  novoCard.querySelector(".element__img").src = campoLink.value;
-  novoCard.querySelector(".element__img").alt = `Imagem de ${campoNome.value}`;
+  newCard.querySelector(".element__title").textContent = campoNome.value;
+  newCard.querySelector(".element__img").src = campoLink.value;
+  newCard.querySelector(".element__img").alt = `Imagem de ${campoNome.value}`;
   
   
   // Adiciona o botão de lixeira DENTRO do novo card
-  novoCard.querySelector(".element__trash").addEventListener("click", (event) => {
+  newCard.querySelector(".element__trash").addEventListener("click", (event) => {
     // Encontra o cartão pai 
     const card = event.target.closest('.element');
     
@@ -155,7 +155,7 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
 
   // adiciona o botao funcional de curtir 
 
-  novoCard.querySelector(".element__button").addEventListener("click", (event) => {
+  newCard.querySelector(".element__button").addEventListener("click", (event) => {
     // Alterna a classe active no botão clicado
     event.currentTarget.classList.toggle("element__button_active");
   }) 
@@ -163,7 +163,7 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
 
   // Adicion funçao de abertura de foto 
 
-  novoCard.querySelector(".element__img").addEventListener("click", function() {
+  newCard.querySelector(".element__img").addEventListener("click", function() {
     // Pega 
     const card = this.closest('.element'); // o
     const title = card ? card.querySelector('.element__title').textContent : '';
@@ -180,12 +180,12 @@ botaoAdicionarCard.addEventListener("click", (evento) => {
 
   
   // Adiciona o novo card à lista de elementos
-  document.querySelector(".elements").prepend(novoCard);
+  document.querySelector(".elements").prepend(newCard);
   
   // Limpa os campos  e fechar
   campoNome.value = "";
   campoLink.value = "";
-  formClose2();
+  closeFormNewCard();
   
 })
 
@@ -208,18 +208,18 @@ buttonlike.forEach((button) => {
 
 // funcion popup abrir e fechar 
 
-const popup3 = document.querySelector(".popup__3");
+const popupImgFull = document.querySelector(".popup__full_img");
 
 function imgOpen () {
 
-  popup3.classList.add("popup__opened");
-  popupOver.classList.add("popup__opened");
+  popupImgFull.classList.add("popup__opened");
+  popupOver[2].classList.add("popup__opened");
 
 }
 
 function imgClose () {
-   popup3.classList.remove("popup__opened");
-  popupOver.classList.remove("popup__opened");
+   popupImgFull.classList.remove("popup__opened");
+  popupOver[2].classList.remove("popup__opened");
 }
  
 // fechar img 

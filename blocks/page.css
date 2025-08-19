@@ -5,6 +5,7 @@
   margin: 0px auto;
   box-sizing: border-box;
   position: relative;
+  min-height: 100vh;
 }
 
 input {
