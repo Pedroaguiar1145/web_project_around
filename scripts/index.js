@@ -3,7 +3,6 @@ const popup = page.querySelector(".popup");
 const popupOver = page.querySelectorAll(".popup__overlay");
 const popupButtonOpen = page.querySelector(".profile__edit");
 const popupButtonClose = page.querySelectorAll(".popup__close");
-const saveEdit = page.querySelector(".popup__submit");
 const name = page.querySelector(".profile__name");
 const job = page.querySelector(".profile__job");
 const nameInput = page.querySelector(".popup__name");
@@ -19,6 +18,7 @@ function openFormEdit() {
   popupOver[0].classList.add("popup__opened");
   nameInput.value = `${name.textContent}`;
   jobInput.value = `${job.textContent}`;
+  enableValidation()
 }
 
 function openFormNewCard() {
@@ -121,12 +121,12 @@ trashButtons.forEach((button) => {
 
 
 // Seleciona os elementos do formulário
-const botaoAdicionarCard = page.querySelector(".popup__submit_element");
+const botaoAdicionarCard = page.querySelectorAll(".popup__submit_element");
 const campoNome = page.querySelector(".popup__name_place");
 const campoLink = page.querySelector(".popup__link");
 
 // Adiciona o evento de clique no botão
-botaoAdicionarCard.addEventListener("click", (evento) => {
+botaoAdicionarCard[1].addEventListener("click", (evento) => {
   evento.preventDefault();
   
   // Seleciona o template do card
@@ -252,3 +252,30 @@ imagens.forEach(img => {
   });
 });
 
+// fechar popup clicando fora
+const overlay = document.querySelectorAll(".popup__overlay");
+overlay[0].addEventListener("click", closeFormEdit);
+overlay[1].addEventListener("click", closeFormNewCard);
+overlay[2].addEventListener("click", imgClose);
+
+//fechar popup clicando esc
+document.addEventListener("keydown", (event) => {
+  if (event.key === 'Escape') {
+    closeFormEdit()
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === 'Escape') {
+    closeFormNewCard()
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === 'Escape') {
+    imgClose()
+  }
+});
+
+enableValidation()
+
+
+  
